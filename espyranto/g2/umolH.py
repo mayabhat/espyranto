@@ -31,27 +31,27 @@ class umolH:
         self.max = np.array([self.umolH_ef[i]['Max H2 (umol)']for i in range(len(self.umolH_ef))])
         
         #Array of images and timestamps
-        image_files = glob.glob(os.path.join(plate.base,plate.directory,'images/*.jpg'))
-        if not len(image_files)>0:
-            raise Exception('No image file found')
+        #image_files = glob.glob(os.path.join(plate.base,plate.directory,'images/*.jpg'))
+        #if not len(image_files)>0:
+        #    raise Exception('No image file found')
             
         #These are the timestamps for which the images were taken but they are 
         #not the same as reaction times because the reactor is not
         #illuminated by blue light while taking the image.
-        prefix = os.path.split(image_files[0])[-1].split('A_')[0]
-        dates = [datetime.strptime(os.path.split(f)[-1], f'{prefix}A_y%ym%md%dH%HM%MS%S.jpg') for f in image_files]
+        #prefix = os.path.split(image_files[0])[-1].split('A_')[0]
+        #dates = [datetime.strptime(os.path.split(f)[-1], f'{prefix}A_y%ym%md%dH%HM%MS%S.jpg') for f in image_files]
         
         #This is a sorted list of tuples(filename,datetime) for each image
-        self.images = sorted(zip(image_files,dates),key=operator.itemgetter(1))
+        #self.images = sorted(zip(image_files,dates),key=operator.itemgetter(1))
         
         self.timestep = plate.metadata['Picture time (min)']*60
         
     def __str__(self):
         '''This is a string to summarize this data.'''
         s = ['','umolH data']
-        s += [f' {len(self.images)} images were acquired.',
-              f' Start time: {self.images[0][1]}',
-              f' End time: {self.images[-1][1]}',
+        #s += [f' {len(self.images)} images were acquired.',
+        #      f' Start time: {self.images[0][1]}',
+        #      f' End time: {self.images[-1][1]}',
               f' The timestep is {self.timestep} min']
         s+= [f'umolH data has shape: {self.umolH.shape}']
         return '\n'.join(s)
