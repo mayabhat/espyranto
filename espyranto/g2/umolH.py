@@ -52,7 +52,7 @@ class umolH:
         #s += [f' {len(self.images)} images were acquired.',
         #      f' Start time: {self.images[0][1]}',
         #      f' End time: {self.images[-1][1]}',
-              f' The timestep is {self.timestep} min']
+        s += [f' The timestep is {self.timestep} min']
         s+= [f'umolH data has shape: {self.umolH.shape}']
         return '\n'.join(s)
 
